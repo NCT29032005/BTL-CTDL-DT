@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// Định nghĩa cấu trúc nhân viên (danh sách liên kết móc nối)
 struct NhanVien {
     long long maNV;
     string hoVaTen;
@@ -17,7 +16,6 @@ struct NhanVien {
     float phuCap;
     float thucLinh;
     string chucDanh;
-    // Các thông tin khác có thể thêm vào
     NhanVien* next;  // Con trỏ đến nhân viên tiếp theo (móc nối)
 };
 
@@ -55,26 +53,15 @@ void dangKyDaoTao(NhanVien* nv);
 void danhGiaKhoaHoc(NhanVien* nv);
 
 // Các hàm đánh giá hiệu suất
-void lapKeHoachDanhGia(NhanVien* nv);
 void thuThapKetQuaDanhGia(NhanVien* nv);
 void hienThiKetQuaDanhGia(NhanVien* nv);
-
-// Các hàm quản lý tài sản
-void quanLyTaiSan();
-void phanPhatTaiSan(NhanVien* nv);
-void theoDoiTaiSan(NhanVien* nv);
 
 // Các hàm báo cáo
 void baoCaoNhanSu();
 void baoCaoLuong();
 void baoCaoDaoTao();
 void baoCaoHieuSuat();
-void baoCaoTaiSan();
 
-// Các hàm quản lý văn bản
-void quanLyHopDong(NhanVien* nv);
-void quanLyQuyetDinhKhenThuong(NhanVien* nv);
-void quanLyVVanBanNhanSu();
 
 // Các tính năng khác
 void quanLySuKien();
@@ -84,10 +71,6 @@ void baoMatDuLieu();
 
 // Các chức năng nâng cao
 void quanLyPhucLoi(NhanVien* nv);
-void lapKeHoachPhatTrienNgheNghiep(NhanVien* nv);
-void quanLyQuanHeLaoDong(NhanVien* nv);
-void quanLySucKhoe(NhanVien* nv);
-void xayDungCongDongNhanVien();
 void phanTichDuLieuNhanSu();
 
 // Hàm khởi tạo danh sách liên kết móc nối (circular linked list)
@@ -118,7 +101,7 @@ void hienThiDanhSach(NhanVien* tail) {
     do {
         cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
         temp = temp->next;
-    } while (temp != tail->next);  // Lặp lại từ đầu nếu đã đi đến cuối danh sách
+    } while (temp != tail->next); 
 }
 
 // Hàm main để thử nghiệm
