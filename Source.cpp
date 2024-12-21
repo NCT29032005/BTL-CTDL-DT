@@ -45,7 +45,7 @@ void hienThiDanhSach(NhanVien* head) {
     NhanVien* temp = head;
     while (temp != nullptr) {
         cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
-             << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
         temp = temp->next;
     }
 }
@@ -60,7 +60,7 @@ void hienThiDanhSachNguoc(NhanVien* tail) {
     NhanVien* temp = tail;
     while (temp != nullptr) {
         cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
-             << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
         temp = temp->prev;
     }
 }
@@ -92,31 +92,12 @@ void tinhLuong(NhanVien* nv);
 void tinhKhauTru(NhanVien* nv);
 void xuatBangLuong(NhanVien* nv);
 void capNhatLuong(NhanVien* nv);
+void thuongNhanVien(NhanVien* nv);
 
-// Các hàm quản lý đào tạo
-void quanLyKhoaHoc();
-void dangKyDaoTao(NhanVien* nv);
-void danhGiaKhoaHoc(NhanVien* nv);
-
-// Các hàm đánh giá hiệu suất
-void thuThapKetQuaDanhGia(NhanVien* nv);
-void hienThiKetQuaDanhGia(NhanVien* nv);
 
 // Các hàm báo cáo
 void baoCaoNhanSu();
 void baoCaoLuong();
-void baoCaoDaoTao();
-void baoCaoHieuSuat();
-
-// Các tính năng khác
-void quanLySuKien();
-void tinhToanThongKeNhanSu();
-void phanQuyenTruyCap();
-void baoMatDuLieu();
-
-// Các chức năng nâng cao
-void quanLyPhucLoi(NhanVien* nv);
-void phanTichDuLieuNhanSu();
 
 // Hàm main để thử nghiệm
 int main() {
