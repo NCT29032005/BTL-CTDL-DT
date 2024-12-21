@@ -1,8 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <cstdlib>
-
 using namespace std;
 
 struct NhanVien {
@@ -16,8 +13,57 @@ struct NhanVien {
     float phuCap;
     float thucLinh;
     string chucDanh;
-    NhanVien* next;  // Con trỏ đến nhân viên tiếp theo (móc nối)
+    NhanVien* prev; // Con trỏ đến nhân viên trước
+    NhanVien* next; // Con trỏ đến nhân viên tiếp theo
 };
+
+// Hàm khởi tạo danh sách liên kết đôi
+NhanVien* khoiTaoDanhSach() {
+    return nullptr; // Danh sách ban đầu trống
+}
+
+// Hàm thêm nhân viên vào cuối danh sách liên kết đôi
+void themNhanVien(NhanVien*& head, NhanVien*& tail, NhanVien* nvMoi) {
+    if (head == nullptr) { // Nếu danh sách trống
+        head = tail = nvMoi;
+        nvMoi->prev = nvMoi->next = nullptr;
+    } else {
+        tail->next = nvMoi;
+        nvMoi->prev = tail;
+        nvMoi->next = nullptr;
+        tail = nvMoi;
+    }
+}
+
+// Hàm hiển thị danh sách nhân viên theo chiều xuôi
+void hienThiDanhSach(NhanVien* head) {
+    if (head == nullptr) {
+        cout << "Danh sách trống." << endl;
+        return;
+    }
+
+    NhanVien* temp = head;
+    while (temp != nullptr) {
+        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
+             << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+        temp = temp->next;
+    }
+}
+
+// Hàm hiển thị danh sách nhân viên theo chiều ngược
+void hienThiDanhSachNguoc(NhanVien* tail) {
+    if (tail == nullptr) {
+        cout << "Danh sách trống." << endl;
+        return;
+    }
+
+    NhanVien* temp = tail;
+    while (temp != nullptr) {
+        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
+             << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+        temp = temp->prev;
+    }
+}
 
 // Các hàm quản lý thông tin nhân viên
 void capNhatThongTinCaNhan(NhanVien* nv);
@@ -62,7 +108,6 @@ void baoCaoLuong();
 void baoCaoDaoTao();
 void baoCaoHieuSuat();
 
-
 // Các tính năng khác
 void quanLySuKien();
 void tinhToanThongKeNhanSu();
@@ -73,50 +118,25 @@ void baoMatDuLieu();
 void quanLyPhucLoi(NhanVien* nv);
 void phanTichDuLieuNhanSu();
 
-// Hàm khởi tạo danh sách liên kết móc nối (circular linked list)
-NhanVien* khoiTaoDanhSach() {
-    return nullptr;  // Danh sách ban đầu trống
-}
-
-// Hàm thêm nhân viên vào danh sách móc nối
-void themNhanVien(NhanVien*& tail, NhanVien* nvMoi) {
-    if (tail == nullptr) {
-        nvMoi->next = nvMoi;  // Nếu danh sách trống, nhân viên tự trỏ lại chính nó
-        tail = nvMoi;
-    } else {
-        nvMoi->next = tail->next;  // Nút mới trỏ về đầu danh sách
-        tail->next = nvMoi;  // Nút cuối trỏ về nút mới
-        tail = nvMoi;  // Cập nhật tail là nút mới
-    }
-}
-
-// Hàm hiển thị danh sách nhân viên trong danh sách móc nối
-void hienThiDanhSach(NhanVien* tail) {
-    if (tail == nullptr) {
-        cout << "Danh sách trống." << endl;
-        return;
-    }
-
-    NhanVien* temp = tail->next;  // Bắt đầu từ đầu danh sách
-    do {
-        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
-        temp = temp->next;
-    } while (temp != tail->next); 
-}
-
 // Hàm main để thử nghiệm
 int main() {
-    NhanVien* tail = khoiTaoDanhSach();  // Khởi tạo danh sách rỗng
+    NhanVien* head = khoiTaoDanhSach(); // Khởi tạo danh sách rỗng
+    NhanVien* tail = nullptr;
 
     // Tạo nhân viên mẫu
-    NhanVien* nv1 = new NhanVien{1, "Nguyen Van A", "Ha Noi", "Nam", "a@gmail.com", "0123456789", 10000, 2000, 12000, "Giám đốc", nullptr};
-    themNhanVien(tail, nv1);
+    NhanVien* nv1 = new NhanVien{1, "Nguyen Van A", "Ha Noi", "Nam", "a@gmail.com", "0123456789", 10000, 2000, 12000, "Giám đốc", nullptr, nullptr};
+    themNhanVien(head, tail, nv1);
 
-    NhanVien* nv2 = new NhanVien{2, "Tran Thi B", "Ho Chi Minh", "Nu", "b@gmail.com", "0987654321", 8000, 1500, 9500, "Trưởng phòng", nullptr};
-    themNhanVien(tail, nv2);
+    NhanVien* nv2 = new NhanVien{2, "Tran Thi B", "Ho Chi Minh", "Nu", "b@gmail.com", "0987654321", 8000, 1500, 9500, "Trưởng phòng", nullptr, nullptr};
+    themNhanVien(head, tail, nv2);
 
-    // Hiển thị danh sách nhân viên
-    hienThiDanhSach(tail);
+    // Hiển thị danh sách nhân viên theo chiều xuôi
+    cout << "Danh sách nhân viên (xuôi):" << endl;
+    hienThiDanhSach(head);
+
+    // Hiển thị danh sách nhân viên theo chiều ngược
+    cout << "\nDanh sách nhân viên (ngược):" << endl;
+    hienThiDanhSachNguoc(tail);
 
     return 0;
 }
