@@ -80,6 +80,39 @@ void themNhanVien(NhanVien*& head, NhanVien*& tail, NhanVien* nvMoi) {
     }
 }
 
+<<<<<<< HEAD
+=======
+// Hàm hiển thị danh sách nhân viên theo chiều xuôi
+void hienThiDanhSach(NhanVien* head) {
+    if (head == nullptr) {
+        cout << "Danh sách trống." << endl;
+        return;
+    }
+
+    NhanVien* temp = head;
+    while (temp != nullptr) {
+        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
+            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+        temp = temp->next;
+    }
+}
+
+// Hàm hiển thị danh sách nhân viên theo chiều ngược
+void hienThiDanhSachNguoc(NhanVien* tail) {
+    if (tail == nullptr) {
+        cout << "Danh sách trống." << endl;
+        return;
+    }
+
+    NhanVien* temp = tail;
+    while (temp != nullptr) {
+        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
+            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
+        temp = temp->prev;
+    }
+}
+
+>>>>>>> 701ada8ab916f0c642c61a6f11145c76409c9616
 // Các hàm quản lý thông tin nhân viên
 // Cập nhật thông tin cá nhân
 void capNhatThongTinCaNhan(NhanVien* nv) {
@@ -192,6 +225,7 @@ void phongVan(NhanVien* nv);
 void danhGiaTuyenDung(NhanVien* nv);
 void quyetDinhTuyenDung(NhanVien* nv);
 
+<<<<<<< HEAD
 // Các hàm báo cáo
 void baoCaoNhanSu();
 void baoCaoLuong();
@@ -543,6 +577,26 @@ void hienThiMenu() {
         cout << "|_____________________________________________________________________________|" << endl;
         cout << "Nhap lua chon cua ban [1-15]: ";
 }
+=======
+// Các hàm quản lý chấm công
+void chamCongBangPhuongThuc1(NhanVien* nv);
+void chamCongBangPhuongThuc2(NhanVien* nv);
+void tinhGioLam(NhanVien* nv);
+void tinhGioNghi(NhanVien* nv);
+void hienThiBangChamCong(NhanVien* nv);
+
+// Các hàm quản lý lương
+void tinhLuong(NhanVien* nv);
+void tinhKhauTru(NhanVien* nv);
+void xuatBangLuong(NhanVien* nv);
+void capNhatLuong(NhanVien* nv);
+void thuongNhanVien(NhanVien* nv);
+
+
+// Các hàm báo cáo
+void baoCaoNhanSu();
+void baoCaoLuong();
+>>>>>>> 701ada8ab916f0c642c61a6f11145c76409c9616
 
 // Hàm main để thử nghiệm
 int main() {
