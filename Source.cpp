@@ -1,3 +1,4 @@
+#include <bits/stdc++.h>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -80,39 +81,6 @@ void themNhanVien(NhanVien*& head, NhanVien*& tail, NhanVien* nvMoi) {
     }
 }
 
-<<<<<<< HEAD
-=======
-// Hàm hiển thị danh sách nhân viên theo chiều xuôi
-void hienThiDanhSach(NhanVien* head) {
-    if (head == nullptr) {
-        cout << "Danh sách trống." << endl;
-        return;
-    }
-
-    NhanVien* temp = head;
-    while (temp != nullptr) {
-        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
-            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
-        temp = temp->next;
-    }
-}
-
-// Hàm hiển thị danh sách nhân viên theo chiều ngược
-void hienThiDanhSachNguoc(NhanVien* tail) {
-    if (tail == nullptr) {
-        cout << "Danh sách trống." << endl;
-        return;
-    }
-
-    NhanVien* temp = tail;
-    while (temp != nullptr) {
-        cout << "MaNV: " << temp->maNV << ", HoTen: " << temp->hoVaTen << ", LuongCB: " << temp->luongCB
-            << ", PhuCap: " << temp->phuCap << ", ThucLinh: " << temp->thucLinh << endl;
-        temp = temp->prev;
-    }
-}
-
->>>>>>> 701ada8ab916f0c642c61a6f11145c76409c9616
 // Các hàm quản lý thông tin nhân viên
 // Cập nhật thông tin cá nhân
 void capNhatThongTinCaNhan(NhanVien* nv) {
@@ -219,16 +187,226 @@ void hienThiThongTinNhanVien(NhanVien* nv) {
 }
 
 // Các hàm quản lý tuyển dụng
-void dangTinTuyenDung();
-void nhanHoSoTuyenDung();
-void phongVan(NhanVien* nv);
-void danhGiaTuyenDung(NhanVien* nv);
-void quyetDinhTuyenDung(NhanVien* nv);
+void dangTinTuyenDung() {
+    string viTri, yeuCau, quyenLoi;
+    string chucDanh, phongBan;
 
-<<<<<<< HEAD
-// Các hàm báo cáo
-void baoCaoNhanSu();
-void baoCaoLuong();
+    cout << "----- Dang tin tuyen dung -----" << endl;
+
+    // Nhập vị trí cần tuyển
+    cout << "Nhap vi tri can tuyen: ";
+    getline(cin, viTri);
+
+    // Nhập các yêu cầu công việc
+    cout << "Nhap cac yeu cau cong viec: ";
+    getline(cin, yeuCau);
+
+    // Nhập các quyền lợi
+    cout << "Nhap cac quyen loi cong viec: ";
+    getline(cin, quyenLoi);
+
+    // Lựa chọn chức danh
+    cout << "Chon chuc danh ung vien (GIAMDOC, QUANLYCAPCAO, QUANLYCAPTHAP, NHANVIEN): ";
+    cin >> chucDanh;
+    while (chucDanh != "GIAMDOC" && chucDanh != "QUANLYCAPCAO" &&
+        chucDanh != "QUANLYCAPTHAP" && chucDanh != "NHANVIEN") {
+        cout << "Chuc danh khong hop le. Vui long nhap lai: ";
+        cin >> chucDanh;
+    }
+
+    // Lựa chọn phòng ban
+    cout << "Chon phong ban (Phòng điều hành, Phòng kỹ thuật, Phòng tài chính, "
+            "Phòng nhân sự, Phòng kinh doanh): ";
+    cin.ignore(); // Bỏ ký tự xuống dòng còn lại từ cin trước
+    getline(cin, phongBan);
+    while (phongBan != "Phòng điều hành" && phongBan != "Phòng kỹ thuật" &&
+        phongBan != "Phòng tài chính" && phongBan != "Phòng nhân sự" &&
+        phongBan != "Phòng kinh doanh") {
+        cout << "Phong ban khong hop le. Vui long nhap lai: ";
+        getline(cin, phongBan);
+    }
+
+    // Hiển thị thông tin tin tuyển dụng
+    cout << "\n----- Thong tin tuyen dung -----" << endl;
+    cout << "Vi tri: " << viTri << endl;
+    cout << "Yeu cau: " << yeuCau << endl;
+    cout << "Quyen loi: " << quyenLoi << endl;
+    cout << "Chuc danh: " << chucDanh << endl;
+    cout << "Phong ban: " << phongBan << endl;
+    cout << "---------------------------------" << endl << endl;
+}
+
+void nhanHoSoTuyenDung(NhanVien*& head, NhanVien*& tail) {
+    NhanVien* nvMoi = new NhanVien;
+    cout << "----- Nhan ho so tuyen dung -----" << endl;
+    
+    // Nhập thông tin cá nhân
+    cout << "Nhập mã NV: ";
+    cin >> nvMoi->thongTinCaNhan.maNV;
+    cin.ignore();
+    cout << "Nhập họ tên: ";
+    getline(cin, nvMoi->thongTinCaNhan.hoVaTen);
+    cout << "Nhập ngày sinh: ";
+    getline(cin, nvMoi->thongTinCaNhan.ngaySinh);
+    cout << "Nhập giới tính: ";
+    getline(cin, nvMoi->thongTinCaNhan.gioiTinh);
+    
+    // Nhập thông tin liên hệ
+    cout << "Nhập địa chỉ: ";
+    getline(cin, nvMoi->thongTinLienHe.diaChi);
+    cout << "Nhập email: ";
+    getline(cin, nvMoi->thongTinLienHe.email);
+    cout << "Nhập số điện thoại: ";
+    getline(cin, nvMoi->thongTinLienHe.soDT);
+    
+    // Nhập thông tin gia đình
+    cout << "Nhập tình trạng hôn nhân: ";
+    getline(cin, nvMoi->thongTinGiaDinh.tinhTrangHonNhan);
+    cout << "Nhập số con: ";
+    cin >> nvMoi->thongTinGiaDinh.soCon;
+    cin.ignore();  // To consume newline character
+    cout << "Nhập quê quán: ";
+    getline(cin, nvMoi->thongTinGiaDinh.queQuan);
+    
+    // Nhập thông tin công tác
+    cout << "Nhập chức danh: ";
+    getline(cin, nvMoi->thongTinCongTac.chucDanh);
+    cout << "Nhập phòng ban: ";
+    getline(cin, nvMoi->thongTinCongTac.phongBan);
+    cout << "Nhập số năm kinh nghiệm: ";
+    cin >> nvMoi->thongTinCongTac.soNamKinhNghiem;
+    cin.ignore();  // To consume newline character
+    
+    // Nhập kỹ năng
+    cout << "Nhập kỹ năng chuyên môn: ";
+    getline(cin, nvMoi->kyNang.kyNangChuyenMon);
+    cout << "Nhập kỹ năng mềm: ";
+    getline(cin, nvMoi->kyNang.kyNangMem);
+    cout << "Nhập ngoại ngữ: ";
+    getline(cin, nvMoi->kyNang.ngoaiNgu);
+
+    nvMoi->luong = {0, 0, 0, 0, 0, 0, 0, 2, {0}};
+    nvMoi->prev = nvMoi->next = nullptr;
+    themNhanVien(head, tail, nvMoi);
+
+    cout << "Ho so da duoc tiep nhan va luu tru." << endl;
+    cout << "---------------------------------" << endl << endl;
+}
+
+void phongVan(NhanVien* nv) {
+    if (nv == nullptr) return;
+    
+    string cauTraLoi;
+    cout << "----- Phong van ung vien -----" << endl;
+    cout << "Ung vien: " << nv->thongTinCaNhan.hoVaTen << endl;
+
+    cout << "Cau hoi 1: Hãy giới thiệu về bản thân bạn: ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 2: Tại sao bạn muốn làm việc cho công ty chúng tôi? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 3: Điểm mạnh và điểm yếu của bạn là gì? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 4: Hãy mô tả một tình huống khó khăn bạn đã gặp phải tại công ty trước đây và cách bạn xử lý nó: ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 5: Bạn thấy mình ở đâu trong 5 năm tới? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 6: Tại sao bạn rời bỏ công việc trước đây? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 7: Bạn ưu tiên công việc như thế nào khi có nhiều deadline cùng lúc? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 8: Điều gì là động lực đối với bạn? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Cau hoi 9: Bạn xử lý phản hồi hoặc sự chỉ trích như thế nào? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+    
+    cout << "Cau hoi 10: Bạn có câu hỏi nào cho chúng tôi không? ";
+    getline(cin, cauTraLoi);
+    cout << "Tra loi cua ung vien: " << cauTraLoi << endl;
+
+    cout << "Phong van hoan thanh." << endl;
+    cout << "---------------------------------" << endl << endl;
+}
+
+void danhGiaTuyenDung(NhanVien* nv) {
+    if (nv == nullptr) return;
+    int chuyenMon, giaoTiep, thaiDo, tinhCauTien, linhHoat;
+    string danhGiaChung;
+    cout << "----- Danh gia tuyen dung -----" << endl;
+    cout << "Danh gia ung vien: " << nv->thongTinCaNhan.hoVaTen << endl;
+    cout << "Nhap diem kien thuc chuyen mon (1-10): ";
+    cin >> chuyenMon;
+    cout << "Nhap diem kha nang giao tiep (1-10): ";
+    cin >> giaoTiep;
+    cout << "Nhap diem thai do (1-10): ";
+    cin >> thaiDo;
+    cout << "Nhap diem tinh cau tien va chu dong (1-10): ";
+    cin >> tinhCauTien;
+    cout << "Nhap diem linh hoat va thich nghi (1-10): ";
+    cin >> linhHoat;
+    cout << "Nhap danh gia chung: ";
+    cin.ignore();
+    getline(cin, danhGiaChung);
+    int tongDiem = chuyenMon + giaoTiep + thaiDo + tinhCauTien + linhHoat;
+    cout << "Tong diem danh gia: " << tongDiem << "/50" << endl;
+    cout << (tongDiem >= 40 ? "Ket luan: Dat yeu cau tuyen dung." : "Ket luan: Khong dat.") << endl;
+    cout << "Danh gia chung: " << danhGiaChung << endl;
+    cout << "---------------------------------" << endl << endl;
+}
+
+void quyetDinhTuyenDung(NhanVien* nv) {
+    if (nv == nullptr) return;
+    
+    string ngayBatDau, loaiHopDong, mucLuong, phucLoi, mucTieuCongViec;
+    
+    cout << "----- Quyet dinh tuyen dung -----" << endl;
+    cout << "Quyet dinh tuyen dung ung vien: " << nv->thongTinCaNhan.hoVaTen << endl;
+    
+    // Nhập ngày bắt đầu làm việc
+    cout << "Nhap ngay bat dau lam viec (dd/mm/yyyy): ";
+    cin >> ngayBatDau;
+    cout << "Ngay bat dau lam viec: " << ngayBatDau << endl;
+    
+    // Nhập loại hợp đồng lao động
+    cin.ignore(); 
+    cout << "Nhap loai hop dong lao dong (Thu viec/Chinh thuc): ";
+    getline(cin, loaiHopDong);
+    
+    // Nhập mức lương cơ bản
+    cout << "Nhap muc luong co ban: ";
+    getline(cin, mucLuong);
+    
+    // Nhập thông tin phúc lợi
+    cout << "Nhap phuc loi (BHYT, BHXH, phụ cấp khác nếu có): ";
+    getline(cin, phucLoi);
+    
+    // Nhập mục tiêu công việc
+    cout << "Nhap muc tieu cong viec trong thoi gian thu viec: ";
+    getline(cin, mucTieuCongViec);
+    
+    // In thông tin hợp đồng và các phúc lợi
+    cout << "Loai hop dong: " << loaiHopDong << endl;
+    cout << "Muc luong co ban: " << mucLuong << endl;
+    cout << "Phuc loi: " << phucLoi << endl;
+    cout << "Muc tieu cong viec trong thoi gian thu viec: " << mucTieuCongViec << endl;
+    cout << "---------------------------------" << endl << endl;
+}
 
 // Hàm hiển thị bảng chấm công
 void hienThiBangChamCong(NhanVien* nv) {
@@ -446,6 +624,39 @@ void xuatBangLuong(NhanVien* nv) {
     cout << "Lương thực lĩnh: " << nv->luong.thucLinh << " VND\n";
 }
 
+// Các hàm báo cáo
+void baoCaoNhanSu(NhanVien* head) {
+    if (!head) {
+        cout << "Danh sách nhân viên trống.\n";
+        return;
+    }
+    cout << "Báo cáo nhân sự:\n";
+    NhanVien* current = head;
+    while (current) {
+        cout << "Mã NV: " << current->thongTinCaNhan.maNV << ", Họ tên: " << current->thongTinCaNhan.hoVaTen
+            << ", Giới tính: " << current->thongTinCaNhan.gioiTinh
+            << ", Phòng ban: " << current->thongTinCongTac.phongBan
+            << ", Chức danh: " << current->thongTinCongTac.chucDanh << endl;
+        current = current->next;
+    }
+}
+
+void baoCaoLuong(NhanVien* head) {
+    if (!head) {
+        cout << "Danh sách nhân viên trống.\n";
+        return;
+    }
+    cout << "Báo cáo lương:\n";
+    NhanVien* current = head;
+    while (current) {
+        cout << "Mã NV: " << current->thongTinCaNhan.maNV << ", Họ tên: " << current->thongTinCaNhan.hoVaTen
+            << ", Lương cơ bản: " << current->luong.luongCB
+            << ", Phụ cấp: " << current->luong.phuCap
+            << ", Thực lĩnh: " << current->luong.thucLinh << endl;
+        current = current->next;
+    }
+}
+
 // Hàm lưu danh sách nhân viên vào file
 void luuDanhSachNhanVien(NhanVien* head, const string& tenFile) {
     ofstream file(tenFile);
@@ -543,60 +754,42 @@ void taiDanhSachNhanVien(NhanVien*& head, NhanVien*& tail, const string& tenFile
 
 void hienThiMenu() {
     cout << " _____________________________________________________________________________" << endl;
-        cout << "|*****************************************************************************|" << endl;
-        cout << "|                              QUAN LY NHAN VIEN                              |" << endl;
-        cout << "|_____________________________________________________________________________|" << endl;
-        cout << "|*                                                                           *|" << endl;
-        cout << "|              ||\\"<<"\\        //|| ||======  ||\\"<<"\\    || ||       ||              |" << endl;
-        cout << "|              || \\"<<"\\      // || ||        || \\"<<"\\   || ||       ||              |" << endl;
-        cout << "|              ||  \\"<<"\\    //  || ||======  ||  \\"<<"\\  || ||       ||              |" << endl;
-        cout << "|              ||   \\"<<"\\  //   || ||        ||   \\"<<"\\ || ||       ||              |" << endl;
-        cout << "|              ||    \\"<<"\\//    || ||======  ||    \\"<<"\\||  \\"<<"\\=====//               |" << endl;
-        cout << "|_____________________________________________________________________________|" << endl;
-        cout << "|                                                                             |" << endl;
-        cout << "|  1.  Thêm Nhân ViênViên                                                     |" << endl;
-        cout << "|  2.  Hien thi bảng chấm công                                                |" << endl;
-        cout << "|  3.  Tim kiem nhan vien theo maNV                                           |" << endl;
-        cout << "|  4.  Tim kiem nhan vien theo CCCD                                           |" << endl;
-        cout << "|  5.  Tim kiem nhan vien theo ten                                            |" << endl;
-        cout << "|  6.  Reset bảng chấm công                                                   |" << endl;
-        cout << "|  7.  Tính lương                                                             |" << endl;
-        cout << "|  8.  Tim kiem nhan vien thu nhap cao nhat                                   |" << endl;
-        cout << "|  9.  Thưởng phạt nhân viên                                                  |" << endl;
-        cout << "|  10. Xuất bảng lương                                                        |" << endl;
-        cout << "|  11. Lưu danh sách nhân viên vào file                                       |" << endl;
-        cout << "|  12. Tải danh sách nhân viên từ file                                        |" << endl;
-        cout << "|  13. Ghi danh sach nhan vien ra file khac                                   |" << endl;
-        cout << "|  14. Quay lai menu                                                          |" << endl;
-        cout << "|  15. Thoat                                                                  |" << endl;
-        cout << "|                                                                             |" << endl;
-        cout << "|*___________________________________________________________________________*|" << endl;
-        cout << "|_____________________________________________________________________________|" << endl;
-        cout << "|*****************                    ~2TK~                   ****************|" << endl;
-        cout << "|*****************************************************************************|" << endl;
-        cout << "|_____________________________________________________________________________|" << endl;
-        cout << "Nhap lua chon cua ban [1-15]: ";
+    cout << "|*****************************************************************************|" << endl;
+    cout << "|                              QUAN LY NHAN VIEN                              |" << endl;
+    cout << "|_____________________________________________________________________________|" << endl;
+    cout << "|*                                                                           *|" << endl;
+    cout << "|              ||\\"<<"\\        //|| ||======  ||\\"<<"\\    || ||       ||              |" << endl;
+    cout << "|              || \\"<<"\\      // || ||        || \\"<<"\\   || ||       ||              |" << endl;
+    cout << "|              ||  \\"<<"\\    //  || ||======  ||  \\"<<"\\  || ||       ||              |" << endl;
+    cout << "|              ||   \\"<<"\\  //   || ||        ||   \\"<<"\\ || ||       ||              |" << endl;
+    cout << "|              ||    \\"<<"\\//    || ||======  ||    \\"<<"\\||  \\"<<"\\=====//               |" << endl;
+    cout << "|_____________________________________________________________________________|" << endl;
+    cout << "|                                                                             |" << endl;
+    cout << "|  1.  Thêm Nhân ViênViên                                                     |" << endl;
+    cout << "|  2.  Hien thi bảng chấm công                                                |" << endl;
+    cout << "|  3.  Tim kiem nhan vien theo maNV                                           |" << endl;
+    cout << "|  4.  Tim kiem nhan vien theo CCCD                                           |" << endl;
+    cout << "|  5.  Tim kiem nhan vien theo ten                                            |" << endl;
+    cout << "|  6.  Reset bảng chấm công                                                   |" << endl;
+    cout << "|  7.  Tính lương                                                             |" << endl;
+    cout << "|  8.  Tim kiem nhan vien thu nhap cao nhat                                   |" << endl;
+    cout << "|  9.  Thưởng phạt nhân viên                                                  |" << endl;
+    cout << "|  10. Xuất bảng lương                                                        |" << endl;
+    cout << "|  11. Lưu danh sách nhân viên vào file                                       |" << endl;
+    cout << "|  12. Tải danh sách nhân viên từ file                                        |" << endl;
+    cout << "|  13. Ghi danh sach nhan vien ra file khac                                   |" << endl;
+    cout << "|  14. Báo cáo nhân sự                                                        |" << endl;
+    cout << "|  15. Báo cáo lương                                                          |" << endl;
+    cout << "|  16. Quay lai menu                                                          |" << endl;
+    cout << "|  17. Thoat                                                                  |" << endl;
+    cout << "|                                                                             |" << endl;
+    cout << "|*___________________________________________________________________________*|" << endl;
+    cout << "|_____________________________________________________________________________|" << endl;
+    cout << "|*****************                    ~2TK~                   ****************|" << endl;
+    cout << "|*****************************************************************************|" << endl;
+    cout << "|_____________________________________________________________________________|" << endl;
+    cout << "Nhap lua chon cua ban [1-15]: ";
 }
-=======
-// Các hàm quản lý chấm công
-void chamCongBangPhuongThuc1(NhanVien* nv);
-void chamCongBangPhuongThuc2(NhanVien* nv);
-void tinhGioLam(NhanVien* nv);
-void tinhGioNghi(NhanVien* nv);
-void hienThiBangChamCong(NhanVien* nv);
-
-// Các hàm quản lý lương
-void tinhLuong(NhanVien* nv);
-void tinhKhauTru(NhanVien* nv);
-void xuatBangLuong(NhanVien* nv);
-void capNhatLuong(NhanVien* nv);
-void thuongNhanVien(NhanVien* nv);
-
-
-// Các hàm báo cáo
-void baoCaoNhanSu();
-void baoCaoLuong();
->>>>>>> 701ada8ab916f0c642c61a6f11145c76409c9616
 
 // Hàm main để thử nghiệm
 int main() {
@@ -719,6 +912,16 @@ int main() {
             case 12: {
                 // Tải danh sách nhân viên từ file
                 taiDanhSachNhanVien(head, tail, "danh_sach_nhan_vien.txt");
+                break;
+            }
+            case 14: {
+                // Báo cáo nhân sự
+                baoCaoNhanSu(head);
+                break;
+            }
+            case 15: {
+                // Báo cáo lương
+                baoCaoLuong(head);
                 break;
             }
             case 0:
